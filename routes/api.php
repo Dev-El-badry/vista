@@ -16,3 +16,18 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::prefix('users')->group(function() {
+	
+	Route::post('register', 'API\APIRegisterController@register');
+	Route::post('verify', 'API\APIRegisterController@verifyUser');
+	Route::post('login', 'API\APILoginController@login');
+	Route::post('logout', 'API\APILoginController@logout');
+	//Route::post('recover', 'API\Auth\RecoverPasswordController@recover')->name('api.user.recover');
+});
+
+
+Route::group(['middleware'=> ['jwt.auth']], function() {
+	
+}):
