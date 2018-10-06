@@ -1,0 +1,45 @@
+
+
+.manage_title {
+	text-transform: uppercase;
+}
+
+.hr-seprator {
+	border-color: #ccc
+}
+
+/* Start Section Users */
+
+.password-field {
+	position: relative;
+}
+
+.show-pword {
+	position: absolute;
+    top: 1px;
+    right: 16px;
+    background-color: #ccc;
+    height: 32px;
+    width: 35px;
+    text-align: center;
+    line-height: 32px;
+    cursor: pointer;
+}
+
+/* Start Section Permissions */
+.radio-permission {
+	margin: auto 10px;
+}
+
+.group-radio {
+	margin-bottom: 20px
+}
+
+.group-permission {
+	margin: 0 !important;
+}
+
+.label-permission {
+	display: block;
+    margin: 5px auto;
+}
