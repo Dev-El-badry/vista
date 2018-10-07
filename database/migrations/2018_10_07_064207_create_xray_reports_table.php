@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateJobTitlesTable extends Migration
+class CreateXrayReportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateJobTitlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('job_titles', function (Blueprint $table) {
+        Schema::create('xray_reports', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->boolean('status')->default(1);
-            $table->integer('priority')->default(0);
+            $table->text('report');
+            $table->string('picture')->nullable();
+            $table->date('date_mode');
+            $table->unsignedInteger('user_id');
             $table->timestamps();
-        });
 
-        Schema::table('public_users', function(Blueprint $table) {
-            $table->boolean('job_title_id')->default(0);
+            $table->foreign('user_id')->references('id')->on('public_users')->onDelete('cascade');
         });
     }
 
@@ -33,6 +32,6 @@ class CreateJobTitlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('job_titles');
+        Schema::dropIfExists('xray_reports');
     }
 }

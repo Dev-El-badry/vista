@@ -20,4 +20,10 @@ trait UserSummary {
 
 	}
 
+	public function update_xray($update_id, $approve) {
+		$us = UserSummaryModel::where('user_id', $update_id)->first();
+		$us->xray_approve = $approve;
+		$us->save();
+	}
+
 }

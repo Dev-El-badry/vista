@@ -49,5 +49,18 @@ Route::group(['middleware'=> ['jwt.auth']], function() {
 		Route::get('/get_list', 'API\JobTitleController@get_list');
 		Route::post('/add_job_title', 'API\JobTitleController@add_job_title');
 	});
+
+	//Update User Profile
+	Route::prefix('users')->group(function() {
+		Route::post('/update_profile/{update_id}', 'API\UserController@update_profile');
+		Route::get('/delete_picture/{update_id}', 'API\UserController@delete_picture');
+	});
+
+	//Update Xray Report
+	Route::prefix('xray_reports')->group(function() {
+		Route::post('/store', 'API\XrayController@store');
+		Route::post('/update/{update_id}', 'API\XrayController@update');
+		Route::post('/delete_item', 'API\XrayController@delete_item');
+	});
 	
 });

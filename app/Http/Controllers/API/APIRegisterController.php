@@ -21,6 +21,7 @@ class APIRegisterController extends Controller
     		'name' => 'required|max:255|unique:public_users',
     		'email' => 'required|email|max:255|unique:public_users',
             'phone_number'=> 'sometimes|nullable|string|min:10|unique:public_users'
+            'group_id'=> 'required|numeric'
     	];
 
 
@@ -35,7 +36,8 @@ class APIRegisterController extends Controller
     	$user->password = Hash::make($request->password);
     	$user->telnum = $request->telnum;
     	$user->login_social = $request->login_social;
-    	$user->social_account_title = $request->social_account_title;
+        $user->social_account_title = $request->social_account_title;
+    	$user->group_id = $request->group_id; //Note: 0 OR 1
     	$user->save();
     	$code = strtolower(str_random(6));
     	DB::table('user_verification')->insert(
