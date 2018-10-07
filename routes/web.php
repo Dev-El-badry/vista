@@ -44,4 +44,16 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|edito
         Route::post('/active_request', 'ChronicDiseaseCategoryController@active_request')->name('cdc.active_request');
         Route::post('/delete_request', 'ChronicDiseaseCategoryController@delete_request')->name('cdc.delete_request');
 	});
+
+    //Job Titles
+    Route::resource('job_title', 'JobTitleController', ['except'=> ['show', 'index']]);
+    Route::get('/job_title/index', 'JobTitleController@index')->name('job_title.index');
+    Route::prefix('job_title')->group(function() {
+        Route::post('/sort', 'JobTitleController@sort');
+        Route::get('/del_config/{id}', 'JobTitleController@del_config')->name('job_title.cdc_del_config');
+
+        Route::get('/get_requests', 'JobTitleController@get_requests')->name('job_title.get_requests');
+        Route::post('/active_request', 'JobTitleController@active_request')->name('job_title.active_request');
+        Route::post('/delete_request', 'JobTitleController@delete_request')->name('job_title.delete_request');
+    });
 });

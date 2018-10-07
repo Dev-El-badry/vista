@@ -39,7 +39,15 @@ Route::group(['middleware'=> ['jwt.auth']], function() {
 	//Save Cronic Disease Of User
 	Route::prefix('cronic_disease')->group(function() {
 		Route::post('/store', 'API\CDController@store');
+		Route::post('/update', 'API\CDController@update');
+		Route::post('/delete', 'API\CDController@delete');
 		
+	});
+
+	//Get Job Titles
+	Route::prefix('job_title')->group(function() {
+		Route::get('/get_list', 'API\JobTitleController@get_list');
+		Route::post('/add_job_title', 'API\JobTitleController@add_job_title');
 	});
 	
 });

@@ -46,6 +46,30 @@
        
       </li>
 
+
+      <li class="treeview">
+        <a href="">
+          <i class="fa fa-tags"></i> <span>Job Titles</span> 
+           <i class="fa fa-angle-left pull-right"></i>
+        </a>
+
+          <ul class="treeview-menu">
+     
+          <li>
+            <a href="{{ route('job_title.index') }}">
+            <i class="fa fa-circle-o"></i>
+            Manage Job Titles</a>
+          </li>
+          <li>
+            <a href="{{ route('job_title.get_requests') }}">
+            <i class="fa fa-circle-o"></i>
+            Requests Job Titles</a>
+          </li>
+        </ul>
+       
+      </li>
+
+
        <li class="">
         <a href="{{ route('users.index') }}">
           <i class="fa fa-users"></i> <span>Manage Users</span> 

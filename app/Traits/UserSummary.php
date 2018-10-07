@@ -12,10 +12,10 @@ trait UserSummary {
 		$us->save();
 	}
 
-	public function update_cd($update_id) {
+	public function update_cd($update_id, $approve) {
 
 		$us = UserSummaryModel::where('user_id', $update_id)->first();
-		$us->chronic_diseases_approve = 1;
+		$us->chronic_diseases_approve = $approve;
 		$us->save();
 
 	}
