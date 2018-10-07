@@ -92,7 +92,7 @@ class ChronicDrugsController extends Controller
             'drug_id'=> 'required|numeric',
             'dose'=> 'required',
             'till_now'=> 'required',
-            'user_id'=> 'required|numeric'
+           
         ]);
 
         if($validator->fails())

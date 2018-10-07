@@ -102,5 +102,12 @@ Route::group(['middleware'=> ['jwt.auth']], function() {
 		Route::post('/update/{update_id}', 'API\ChronicDrugsController@update');
 		Route::post('/delete_item', 'API\ChronicDrugsController@delete_item');
 	});
+
+	//Update Drug Allergies List
+	Route::prefix('recent_drug')->group(function() {
+		Route::post('/store', 'API\RecentDrugsController@store');
+		Route::post('/update/{update_id}', 'API\RecentDrugsController@update');
+		Route::post('/delete_item', 'API\RecentDrugsController@delete_item');
+	});
 	
 });
