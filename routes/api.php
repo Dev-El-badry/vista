@@ -62,5 +62,18 @@ Route::group(['middleware'=> ['jwt.auth']], function() {
 		Route::post('/update/{update_id}', 'API\XrayController@update');
 		Route::post('/delete_item', 'API\XrayController@delete_item');
 	});
+
+	//Get Lab Titles
+	Route::prefix('lab_title')->group(function() {
+		Route::get('/get_list', 'API\LabController@get_list');
+		Route::post('/add_lab_title', 'API\LabController@add_lab_title');
+	});
+
+	//Update Xray Report
+	Route::prefix('labs')->group(function() {
+		Route::post('/store', 'API\LabController@store');
+		Route::post('/update/{update_id}', 'API\LabController@update');
+		Route::post('/delete_item', 'API\LabController@delete_item');
+	});
 	
 });

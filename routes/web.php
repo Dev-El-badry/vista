@@ -56,4 +56,16 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|edito
         Route::post('/active_request', 'JobTitleController@active_request')->name('job_title.active_request');
         Route::post('/delete_request', 'JobTitleController@delete_request')->name('job_title.delete_request');
     });
+
+    //Lab Titles
+    Route::resource('lab_title', 'LabController', ['except'=> ['show', 'index']]);
+    Route::get('/lab_title/index', 'LabController@index')->name('lab_title.index');
+    Route::prefix('lab_title')->group(function() {
+        Route::post('/sort', 'LabController@sort');
+        Route::get('/del_config/{id}', 'LabController@del_config')->name('lab_title.cdc_del_config');
+
+        Route::get('/get_requests', 'LabController@get_requests')->name('lab_title.get_requests');
+        Route::post('/active_request', 'LabController@active_request')->name('lab_title.active_request');
+        Route::post('/delete_request', 'LabController@delete_request')->name('lab_title.delete_request');
+    });
 });

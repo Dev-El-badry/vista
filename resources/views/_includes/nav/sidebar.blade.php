@@ -49,7 +49,7 @@
 
       <li class="treeview">
         <a href="">
-          <i class="fa fa-tags"></i> <span>Job Titles</span> 
+          <i class="fa fa-briefcase"></i> <span>Job Titles</span> 
            <i class="fa fa-angle-left pull-right"></i>
         </a>
 
@@ -64,6 +64,28 @@
             <a href="{{ route('job_title.get_requests') }}">
             <i class="fa fa-circle-o"></i>
             Requests Job Titles</a>
+          </li>
+        </ul>
+       
+      </li>
+
+        <li class="treeview">
+        <a href="">
+          <i class="fa fa-building"></i> <span>Lab Titles</span> 
+           <i class="fa fa-angle-left pull-right"></i>
+        </a>
+
+          <ul class="treeview-menu">
+     
+          <li>
+            <a href="{{ route('lab_title.index') }}">
+            <i class="fa fa-circle-o"></i>
+            Manage Lab Titles</a>
+          </li>
+          <li>
+            <a href="{{ route('lab_title.get_requests') }}">
+            <i class="fa fa-circle-o"></i>
+            Requests Lab Titles</a>
           </li>
         </ul>
        

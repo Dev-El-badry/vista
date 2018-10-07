@@ -26,4 +26,10 @@ trait UserSummary {
 		$us->save();
 	}
 
+	public function update_lab($update_id, $approve) {
+		$us = UserSummaryModel::where('user_id', $update_id)->first();
+		$us->lab_invent_approve = $approve;
+		$us->save();
+	}
+
 }
