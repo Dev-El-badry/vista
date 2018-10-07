@@ -113,6 +113,28 @@
           </li>
         </ul>
        
+      </li>  
+
+      <li class="treeview">
+        <a href="">
+          <i class="fa fa-ambulance"></i> <span>Chronic Drug Titles</span> 
+           <i class="fa fa-angle-left pull-right"></i>
+        </a>
+
+          <ul class="treeview-menu">
+     
+          <li>
+            <a href="{{ route('chronic_drug_list.index') }}">
+            <i class="fa fa-circle-o"></i>
+            Manage Chronic Drug Titles</a>
+          </li>
+          <li>
+            <a href="{{ route('chronic_drug_list.get_requests') }}">
+            <i class="fa fa-circle-o"></i>
+            Requests Chronic Drug Titles</a>
+          </li>
+        </ul>
+       
       </li>
 
 

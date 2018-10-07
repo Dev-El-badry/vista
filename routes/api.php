@@ -88,5 +88,19 @@ Route::group(['middleware'=> ['jwt.auth']], function() {
 		Route::post('/update/{update_id}', 'API\DrugAllergyController@update');
 		Route::post('/delete_item', 'API\DrugAllergyController@delete_item');
 	});
+
+
+	//Get Drug Allergies Titles
+	Route::prefix('chronic_drug_list')->group(function() {
+		Route::get('/get_list', 'API\ChronicDrugsController@get_list');
+		Route::post('/add_lab_title', 'API\ChronicDrugsController@add_lab_title');
+	});
+
+	//Update Drug Allergies List
+	Route::prefix('chronic_drug')->group(function() {
+		Route::post('/store', 'API\ChronicDrugsController@store');
+		Route::post('/update/{update_id}', 'API\ChronicDrugsController@update');
+		Route::post('/delete_item', 'API\ChronicDrugsController@delete_item');
+	});
 	
 });
