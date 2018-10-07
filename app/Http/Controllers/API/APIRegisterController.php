@@ -8,10 +8,12 @@ use App\PublicUser;
 use JWTFactory;
 use JWTAuth;
 use Validator, DB, Hash, Mail;
-
+use App\Traits\UserSummary AS UserSummaryTrait; 
 
 class APIRegisterController extends Controller
 {
+    use UserSummaryTrait;
+
     public function register(Request $request) {
     	$credentials = $request->only('name', 'email', 'password', 'telnum', 'login_social', 'social_account_title');
     	//Note: if not register from third party login login_social: value is zero and social_account_title is null
@@ -70,6 +72,9 @@ class APIRegisterController extends Controller
     		}
     		$user->is_verified = 1;
     		$user->save();
+
+            $this->create_profile($check->user_id);
+
     		DB::table('user_verification')->where('verification_code', $verification_code)->delete();
     		return response()->json([
     			'success'=> true,

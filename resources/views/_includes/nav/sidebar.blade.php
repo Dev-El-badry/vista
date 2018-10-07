@@ -19,7 +19,30 @@
       <li class="active">
         <a href="#">
           <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
+
         </a>
+       
+      </li>
+
+       <li class="treeview">
+        <a href="">
+          <i class="fa fa-tags"></i> <span>Cronic Disease Categories</span> 
+           <i class="fa fa-angle-left pull-right"></i>
+        </a>
+
+          <ul class="treeview-menu">
+     
+          <li>
+            <a href="{{ route('cronic_disease_category.index') }}">
+            <i class="fa fa-circle-o"></i>
+            Manage Cronic Diseases</a>
+          </li>
+          <li>
+            <a href="{{ route('cdc.get_requests') }}">
+            <i class="fa fa-circle-o"></i>
+            Requests Cronic Diseases</a>
+          </li>
+        </ul>
        
       </li>
 

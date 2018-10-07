@@ -29,7 +29,7 @@ class APILoginController extends Controller
     	}
 
     	$credentials['is_verified'] =1;
-    	
+    	auth()->shouldUse('public_users');
     	
     	try {
     		if(! $token = JWTAuth::attempt($credentials))

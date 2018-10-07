@@ -5,15 +5,16 @@
         <div class="col-md-12">
 
             <div class="manage_title">
-                <h1>Manage Users</h1>
+                <h1>Requests Chronic Disease</h1>
             </div>
 
-            <a href="{{ route('users.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp; Create New User</a>
-
+          
             <hr class="hr-seprator">
 
             <!-- Paginations -->
-            {{ $users->links() }}
+            {{ $requests->links() }}
+
+            @if(count($requests)>0)
 
             <!-- TABLE: Users -->
             <div class="box box-info">
@@ -36,25 +37,25 @@
                     <table class="table no-margin">
                     <thead>
                     <tr>
-                        <th>User ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
+                        <th>Count</th>
+                        <th>Chronic Disease</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach($users as $user)
-                        <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
+                        @foreach($requests as $key=>$req)
+                        <tr class="requests-list"> 
+                            <td>{{ ++$key  }}</td>
+                            <td>{{ $req->cd_title }}</td>
+                            
                             <td>
-                                <a href="{{route('users.show', $user->id)}}" class="btn btn-default">
-                                <i class="fa fa-eye fa-fw"></i>
-                                 View </a>
-                                <a href="{{route('users.edit', $user->id)}}" class="btn btn-default">
-                                     <i class="fa fa-edit fa-fw"></i>
-                                 Edit </a>
+                                <a href="#" class="btn btn-primary active_request" data-value="{{ $req->id }}">
+                                <i class="fa fa-bell-o fa-fw"></i>
+                                 Active </a>
+
+                                 <a href="#" class="btn btn-danger delete_request" data-value="{{ $req->id }}">
+                                <i class="fa fa-trash fa-fw"></i>
+                                 Delete </a>
                             </td>
                         </tr>
                         @endforeach
@@ -67,10 +68,20 @@
                 <!-- /.box-body -->
 
             </div>
-          <!-- /.box -->
+            <!-- /.box -->
+
+            @else
+
+            <p style="color: red">No Request In Database.</p>
+
+            @endif
 
             <!-- Paginations -->
-            {{ $users->links() }}
+            {{ $requests->links() }}
         </div>
     </div>
+@endsection
+
+@section('scripts')
+<script type="text/javascript" src="{{ asset('manage/js/cdc.js') }}"></script>
 @endsection

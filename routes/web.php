@@ -32,4 +32,16 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|edito
 
     //Manage Roles
     Route::resource('roles', 'RoleController');
+
+    //Cronic Disease Category
+	Route::resource('/cronic_disease_category', 'ChronicDiseaseCategoryController', ['except'=> ['show', 'index']]);
+	Route::get('cronic_disease_category/index', 'ChronicDiseaseCategoryController@index')->name('cronic_disease_category.index');
+	Route::prefix('cronic_disease_category')->group(function() {
+		Route::post('/sort', 'ChronicDiseaseCategoryController@sort');
+		Route::get('/del_config/{id}', 'ChronicDiseaseCategoryController@del_config')->name('cdc_del_config');
+
+        Route::get('/get_requests', 'ChronicDiseaseCategoryController@get_requests')->name('cdc.get_requests');
+        Route::post('/active_request', 'ChronicDiseaseCategoryController@active_request')->name('cdc.active_request');
+        Route::post('/delete_request', 'ChronicDiseaseCategoryController@delete_request')->name('cdc.delete_request');
+	});
 });

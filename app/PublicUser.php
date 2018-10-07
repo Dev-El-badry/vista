@@ -13,4 +13,9 @@ class PublicUser extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'login_social','sex','age','country','state','address1','address2','telnum','picture','group_id','social_account_title','is_verified'
     ];
+
+
+    public function cd() {
+    	return $this->hasOne('App\ChronicDisease', 'user_id');
+    }
 }

@@ -46,12 +46,12 @@ return [
             'provider' => 'users',
         ],
 
-        'web' => [
+        'public_users' => [
             'driver' => 'session',
             'provider' => 'public_users',
         ],
 
-        'api' => [
+        'public_users-api' => [
             'driver' => 'token',
             'provider' => 'public_users',
         ],

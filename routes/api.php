@@ -29,5 +29,17 @@ Route::prefix('users')->group(function() {
 
 
 Route::group(['middleware'=> ['jwt.auth']], function() {
+
+	//Get Chronic Diseases Categories
+	Route::prefix('cdc_categories')->group(function() {
+		Route::get('/get_list', 'API\CDCController@get_list');
+		Route::post('/add_cd_title', 'API\CDCController@add_cd_title');
+	});
+
+	//Save Cronic Disease Of User
+	Route::prefix('cronic_disease')->group(function() {
+		Route::post('/store', 'API\CDController@store');
+		
+	});
 	
-}):
+});
