@@ -92,6 +92,30 @@
       </li>
 
 
+
+      <li class="treeview">
+        <a href="">
+          <i class="fa fa-bug"></i> <span>Drug Allergy Titles</span> 
+           <i class="fa fa-angle-left pull-right"></i>
+        </a>
+
+          <ul class="treeview-menu">
+     
+          <li>
+            <a href="{{ route('drug_allergy_list.index') }}">
+            <i class="fa fa-circle-o"></i>
+            Manage Drug Allergy Titles</a>
+          </li>
+          <li>
+            <a href="{{ route('drug_allergy_list.get_requests') }}">
+            <i class="fa fa-circle-o"></i>
+            Requests Drug Allergy Titles</a>
+          </li>
+        </ul>
+       
+      </li>
+
+
        <li class="">
         <a href="{{ route('users.index') }}">
           <i class="fa fa-users"></i> <span>Manage Users</span> 

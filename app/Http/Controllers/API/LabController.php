@@ -45,7 +45,7 @@ class LabController extends Controller
     		$cdc->status = 0;
     		$cdc->save();
 
-    		return response()->json(['success'=> true, 'message'=> 'Successfully Lab Title has been added!'], 200);
+    		return response()->json(['success'=> true, 'data'=> $cdc->id], 200);
     	} catch (JWTException $e) {
     		return response()->json(['success'=> false, 'error'=> 'failed to add Lab Title please try again!'], 500);
     	}

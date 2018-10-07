@@ -69,11 +69,24 @@ Route::group(['middleware'=> ['jwt.auth']], function() {
 		Route::post('/add_lab_title', 'API\LabController@add_lab_title');
 	});
 
-	//Update Xray Report
+	//Update Labs 
 	Route::prefix('labs')->group(function() {
 		Route::post('/store', 'API\LabController@store');
 		Route::post('/update/{update_id}', 'API\LabController@update');
 		Route::post('/delete_item', 'API\LabController@delete_item');
+	});
+
+	//Get Drug Allergies Titles
+	Route::prefix('drug_allergy_list')->group(function() {
+		Route::get('/get_list', 'API\DrugAllergyController@get_list');
+		Route::post('/add_lab_title', 'API\DrugAllergyController@add_lab_title');
+	});
+
+	//Update Drug Allergies List
+	Route::prefix('drug_allergy')->group(function() {
+		Route::post('/store', 'API\DrugAllergyController@store');
+		Route::post('/update/{update_id}', 'API\DrugAllergyController@update');
+		Route::post('/delete_item', 'API\DrugAllergyController@delete_item');
 	});
 	
 });

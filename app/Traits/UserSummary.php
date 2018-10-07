@@ -32,4 +32,10 @@ trait UserSummary {
 		$us->save();
 	}
 
+	public function updateDrugAllergy($update_id, $approve) {
+		$us = UserSummaryModel::where('user_id', $update_id)->first();
+		$us->allergies_approve = $approve;
+		$us->save();
+	}
+
 }

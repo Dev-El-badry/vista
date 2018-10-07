@@ -53,7 +53,7 @@ class CDCController extends Controller
     		$cdc->parent_id = $request->parent_id;
     		$cdc->save();
 
-    		return response()->json(['success'=> true, 'message'=> 'Successfully Chronic Disease Title has been added!'], 200);
+    		return response()->json(['success'=> true, 'data'=> $cdc->id], 200);
     	} catch (JWTException $e) {
     		return response()->json(['success'=> false, 'error'=> 'failed to add Chronic Disease Title please try again!'], 500);
     	}

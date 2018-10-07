@@ -68,4 +68,16 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|edito
         Route::post('/active_request', 'LabController@active_request')->name('lab_title.active_request');
         Route::post('/delete_request', 'LabController@delete_request')->name('lab_title.delete_request');
     });
+
+    //Drug Allergy Titles
+    Route::resource('drug_allergy_list', 'DrugAllergyListController', ['except'=> ['show', 'index']]);
+    Route::get('/drug_allergy_list/index', 'DrugAllergyListController@index')->name('drug_allergy_list.index');
+    Route::prefix('drug_allergy_list')->group(function() {
+        Route::post('/sort', 'DrugAllergyListController@sort');
+        Route::get('/del_config/{id}', 'DrugAllergyListController@del_config')->name('drug_allergy_list.cdc_del_config');
+
+        Route::get('/get_requests', 'DrugAllergyListController@get_requests')->name('drug_allergy_list.get_requests');
+        Route::post('/active_request', 'DrugAllergyListController@active_request')->name('drug_allergy_list.active_request');
+        Route::post('/delete_request', 'DrugAllergyListController@delete_request')->name('drug_allergy_list.delete_request');
+    });
 });
