@@ -109,5 +109,11 @@ Route::group(['middleware'=> ['jwt.auth']], function() {
 		Route::post('/update/{update_id}', 'API\RecentDrugsController@update');
 		Route::post('/delete_item', 'API\RecentDrugsController@delete_item');
 	});
+
+	//Upload Old Reports
+	Route::prefix('old_reports')->group(function() {
+		Route::post('/store', 'API\OldReportController@store');
+		Route::post('/delete_item', 'API\OldReportController@delete_item');
+	});
 	
 });
