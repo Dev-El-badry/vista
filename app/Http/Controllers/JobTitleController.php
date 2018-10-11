@@ -8,7 +8,7 @@ use DB;
 use Validator;
 use App\JobTitle;
 use Input;
-class JobTitleController extends Controller
+class JobTitleController extends ManageController
 {
 
     public function active_request(Request $request) {

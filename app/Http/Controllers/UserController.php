@@ -7,7 +7,7 @@ use App\User;
 use App\Role;
 use Validator, Session, Hash;
 
-class UserController extends Controller
+class UserController extends ManageController   
 {
     /**
      * Display a listing of the resource.

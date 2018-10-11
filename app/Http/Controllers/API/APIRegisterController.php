@@ -9,10 +9,11 @@ use JWTFactory;
 use JWTAuth;
 use Validator, DB, Hash, Mail;
 use App\Traits\UserSummary AS UserSummaryTrait; 
+use App\Traits\SendMail; 
 
 class APIRegisterController extends Controller
 {
-    use UserSummaryTrait;
+    use UserSummaryTrait, SendMail;
 
     public function register(Request $request) {
     	$credentials = $request->only('name', 'email', 'password', 'telnum', 'login_social', 'social_account_title');
@@ -20,8 +21,8 @@ class APIRegisterController extends Controller
     	$rules = [
     		'name' => 'required|max:255|unique:public_users',
     		'email' => 'required|email|max:255|unique:public_users',
-            'phone_number'=> 'sometimes|nullable|string|min:10|unique:public_users'
-            'group_id'=> 'required|numeric'
+            'telnum'=> 'sometimes|nullable|string|min:10|unique:public_users',
+            'sex'=> 'required'
     	];
 
 
@@ -34,23 +35,29 @@ class APIRegisterController extends Controller
     	$user->name = $request->name;
     	$user->email = $request->email;
     	$user->password = Hash::make($request->password);
-    	$user->telnum = $request->telnum;
-    	$user->login_social = $request->login_social;
+        $user->telnum = $request->telnum;
+    	$user->sex = $request->sex;
+    	$user->login_social = $request->login_social;// TRUE OR FALSE
         $user->social_account_title = $request->social_account_title;
-    	$user->group_id = $request->group_id; //Note: 0 OR 1
     	$user->save();
     	$code = strtolower(str_random(6));
     	DB::table('user_verification')->insert(
     		['user_id'=>$user->id, 'verification_code'=>$code]
     	);
-    	$email = $user->email;
-    	$name = $user->name;
-    	$subject = 'Please Verifiy Your Account';
-    	Mail::send('public_users.auth.verify', ['name'=>$user->name, 'code'=> $code], function($mail) use ($email,$name, $subject) {
-    		//$mail->from(getenv('FROM_EMAIL_ADDRESS'), 'From User/Company Name Goes Here');
-    		$mail->to($email, $name);
-    		$mail->subject($subject);
-    	});
+
+        /* Send Email */
+        $data['file_path'] = 'public_users.auth.verify';
+        $data['data'] = [
+            'name'=> $user->name,
+            'code'=> $code
+        ];
+        $data['email'] = $user->email;
+        $data['name'] = $user->name;
+        $data['subject'] = 'Please Verifiy Your Account';
+
+        $this->sendMail($data);
+        /* Send Email */
+
     	return response()->json(['success'=>true, 'message'=>'Thanks For Signing Up! Please Check Your Email To Complete Your Register'], 200);
     }
 
@@ -75,7 +82,7 @@ class APIRegisterController extends Controller
     		$user->is_verified = 1;
     		$user->save();
 
-            $this->create_profile($check->user_id);
+            //$this->create_profile($check->user_id);
 
     		DB::table('user_verification')->where('verification_code', $verification_code)->delete();
     		return response()->json([

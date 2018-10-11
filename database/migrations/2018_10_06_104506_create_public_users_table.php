@@ -19,7 +19,7 @@ class CreatePublicUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('login_social');
-            $table->enum('sex', ['male', 'female']);
+            $table->enum('sex', ['male', 'female'])->nullable();
             $table->unsignedInteger('age')->nullable();
             $table->string('country', 80)->nullable();
             $table->string('state', 80)->nullable();
@@ -27,7 +27,6 @@ class CreatePublicUsersTable extends Migration
             $table->string('address2', 120)->nullable();
             $table->string('telnum')->nullable();
             $table->string('picture')->nullable();
-            $table->boolean('group_id')->default(0);
             $table->string('social_account_title', 60)->nullable();
             $table->timestamps();
         });

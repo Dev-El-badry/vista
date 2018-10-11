@@ -9,7 +9,7 @@ use Validator;
 use App\Lab;
 use Input;
 
-class LabController extends Controller
+class LabController extends ManageController
 {
     public function active_request(Request $request) {
         $id = $request->id;

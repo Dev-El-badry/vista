@@ -11,7 +11,9 @@ use Validator, DB, File, Image;
 class UserController extends Controller
 {
     public function update_profile(Request $request, $update_id) {
-    	$validator = Validator::make($request->all(), [
+      
+        $validator = Validator::make($request->all(), [
+
     		'name'=> 'required|string|min:3|max:191|unique:public_users,name,'.$update_id,
     		'sex'=> 'required', // male - female
     		'age'=> 'sometimes|nullable',
@@ -20,6 +22,7 @@ class UserController extends Controller
     		'address1'=> 'sometimes|nullable|max:120|min:3',
     		'telnum'=> 'required|max:191',
     		'picture'=> 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
     	]);	
 
     	if($validator->fails())
@@ -35,9 +38,19 @@ class UserController extends Controller
 	    	$pu->address1 =  $request->address1;
 	    	$pu->address2 =  $request->address2;
 	    	$pu->telnum =  $request->telnum;
-	    	$pu->job_title_id =  $request->job_title_id;
 
 	    	$pu->save();
+
+            //store job titles
+            $jobs = $request->job_title_id;
+            if(count($jobs) > 0) {
+                for ($i=0; $i < count($jobs); $i++) { 
+                    DB::table('user_jobs')->insert([
+                        'user_id'=> $update_id,
+                        'job_id'=> $jobs[$i],
+                    ]);
+                }
+            }
 
 	    	if($request->hasFile('image')) {
 	    		$this->delete_process($update_id);
@@ -98,5 +111,13 @@ class UserController extends Controller
             
             File::delete($user_image);
         }
+    }
+
+    public function view($user_id) {
+        if(!is_numeric($user_id))
+            return response()->json(['success'=> false, 'message'=> 'not allowed to be here'], 401);
+        
+        $user = PublicUser::findOrFail($user_id);
+        return response()->json(['success'=> true, 'data'=> $user->toArray()], 200);
     }
 }

@@ -8,7 +8,7 @@ use DB;
 use Validator;
 use App\ChronicDiseaseCategory;
 use Input;
-class ChronicDiseaseCategoryController extends Controller
+class ChronicDiseaseCategoryController extends ManageController
 {
 
     public function active_request(Request $request) {

@@ -69,6 +69,29 @@
        
       </li>
 
+
+       <li class="treeview">
+        <a href="">
+          <i class="fa fa-comment-o"></i> <span>Compliant Titles</span> 
+           <i class="fa fa-angle-left pull-right"></i>
+        </a>
+
+          <ul class="treeview-menu">
+     
+          <li>
+            <a href="{{ route('compliant_title.index') }}">
+            <i class="fa fa-circle-o"></i>
+            Manage Compliant Titles</a>
+          </li>
+          <li>
+            <a href="{{ route('compliant_title.get_requests') }}">
+            <i class="fa fa-circle-o"></i>
+            Requests Compliant Titles</a>
+          </li>
+        </ul>
+       
+      </li>
+
         <li class="treeview">
         <a href="">
           <i class="fa fa-building"></i> <span>Lab Titles</span> 
@@ -137,6 +160,27 @@
        
       </li>
 
+      <li class="">
+        <a href="{{ route('request_options.index') }}">
+          <i class="fa fa-gear"></i> <span>Manage Request Option</span> 
+        </a>
+       
+      </li>
+
+      <li class="">
+        <a href="{{ route('requests.index') }}">
+          <i class="fa fa-file-o"></i> <span>Manage Requests</span> 
+        </a>
+       
+      </li>
+
+
+       <li class="">
+        <a href="{{ route('public_users.index') }}">
+          <i class="fa fa-users"></i> <span>Manage Users Application</span> 
+        </a>
+       
+      </li>
 
        <li class="">
         <a href="{{ route('users.index') }}">

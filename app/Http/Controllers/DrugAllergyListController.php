@@ -9,7 +9,7 @@ use Validator;
 use App\DrugAllergyList;
 use Input;
 
-class DrugAllergyListController extends Controller
+class DrugAllergyListController extends ManageController
 {
     public function active_request(Request $request) {
         $id = $request->id;

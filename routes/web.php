@@ -93,4 +93,42 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|edito
         Route::post('/active_request', 'ChronicDrugListController@active_request')->name('chronic_drug_list.active_request');
         Route::post('/delete_request', 'ChronicDrugListController@delete_request')->name('chronic_drug_list.delete_request');
     });
+
+    //Request Optionss
+    Route::resource('request_options', 'RequestOptionsController');
+    Route::get('request_options/delete_config/{update_id}', 'RequestOptionsController@delete_config')->name('request_options.delete_config');
+
+    //Manage Requests
+    Route::prefix('requests')->group(function() {
+        Route::get('/index', 'RequestsController@index')->name('requests.index');
+        Route::get('/view/{update_id}', 'RequestsController@view')->name('requests.view');
+        Route::get('/delete_config/{update_id}', 'RequestsController@delete_config')->name('requests.delete_config');
+        Route::post('/update_option/{update_id}', 'RequestsController@update_option')->name('requests.update_option');
+        Route::post('/update_status/{update_id}', 'RequestsController@update_status')->name('requests.update_status');
+        Route::delete('/destroy/{update_id}', 'RequestsController@destroy')->name('requests.destroy');
+    }); 
+
+    //Public Users
+     //Manage Requests
+    Route::prefix('public_users')->group(function() {
+        Route::get('/index', 'PublicUserController@index')->name('public_users.index');
+        Route::get('/view/{update_id}', 'PublicUserController@view')->name('public_users.view');
+        Route::get('/delete_config/{update_id}', 'PublicUserController@delete_config')->name('public_users.delete_config');
+      
+        Route::post('/update_status/{update_id}', 'PublicUserController@update_status')->name('public_users.update_status');
+        Route::delete('/destroy/{update_id}', 'PublicUserController@destroy')->name('public_users.destroy');
+    }); 
+
+    //Compliant Titles
+    Route::resource('compliant_title', 'CompliantTitleController', ['except'=> ['show', 'index']]);
+    Route::get('/compliant_title/index', 'CompliantTitleController@index')->name('compliant_title.index');
+    Route::prefix('compliant_title')->group(function() {
+        Route::post('/sort', 'CompliantTitleController@sort');
+        Route::get('/del_config/{id}', 'CompliantTitleController@del_config')->name('compliant_title.cdc_del_config');
+
+        Route::get('/get_requests', 'CompliantTitleController@get_requests')->name('compliant_title.get_requests');
+        Route::post('/active_request', 'CompliantTitleController@active_request')->name('compliant_title.active_request');
+        Route::post('/delete_request', 'CompliantTitleController@delete_request')->name('compliant_title.delete_request');
+    });
+
 });

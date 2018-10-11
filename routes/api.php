@@ -53,6 +53,7 @@ Route::group(['middleware'=> ['jwt.auth']], function() {
 	//Update User Profile
 	Route::prefix('users')->group(function() {
 		Route::post('/update_profile/{update_id}', 'API\UserController@update_profile');
+		Route::get('/view/{update_id}', 'API\UserController@view');
 		Route::get('/delete_picture/{update_id}', 'API\UserController@delete_picture');
 	});
 
@@ -115,5 +116,26 @@ Route::group(['middleware'=> ['jwt.auth']], function() {
 		Route::post('/store', 'API\OldReportController@store');
 		Route::post('/delete_item', 'API\OldReportController@delete_item');
 	});
+
+	//Job List
+	Route::prefix('job_identity')->group(function() {
+		Route::get('/index/{user_id}', 'API\JobIdentityController@index');
+		Route::post('/store/{user_id}', 'API\JobIdentityController@store');
+	});
+
+	//Business Model Profile
+	Route::prefix('business_model')->group(function() {
+		Route::post('/update_profile/{user_id}', 'API\BusinessModelController@update_profile');
+		Route::get('/show_profile/{user_id}', 'API\BusinessModelController@show_profile');
+	});
+
+	//Get Compliant Titles
+	Route::prefix('compliant_title')->group(function() {
+		Route::get('/get_list', 'API\CompliantTitleController@get_list');
+		Route::post('/add_job_title', 'API\CompliantTitleController@add_job_title');
+	});
+
+
+
 	
 });

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Role;
 use App\Permission;
 use Validator, Session;
-class RoleController extends Controller
+class RoleController extends ManageController
 {
     /**
      * Display a listing of the resource.

@@ -9,7 +9,7 @@ use Validator;
 use App\ChronicDrugList;
 use Input;
 
-class ChronicDrugListController extends Controller
+class ChronicDrugListController extends ManageController
 {
     public function active_request(Request $request) {
         $id = $request->id;

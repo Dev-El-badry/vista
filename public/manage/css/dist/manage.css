@@ -20,6 +20,11 @@
 .content-wrapper, .main-footer {
     margin-left: 250px;
 }
+
+.navbar-nav>.notifications-menu>.dropdown-menu, .navbar-nav>.messages-menu>.dropdown-menu, .navbar-nav>.tasks-menu>.dropdown-menu {
+    width: 406px;
+
+}
 /* End Override On Template */
 
 
