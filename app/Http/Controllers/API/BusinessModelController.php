@@ -51,10 +51,20 @@ class BusinessModelController extends Controller
         return response()->json(['success'=>true, 'data'=> $bm->toArray()], 200);
     }
 
-    public function public_profile($bm_id) {
+    public function public_profile($bm_id, $user_id) {
         //do something
         $bm = BusinessModel::where('id', $bm_id)->first();
-        dd($bm);
+        $status = DB::table('request_chats')->where('bm_id', $bm_id)->where('user_id', $user_id)->first();
+        
+        if($status->dr_approve == 0) {
+            $title = 0;
+        } elseif($status->dr_approve == 2) {
+            $title = 2;
+        } elseif(($status->dr_approve == 1)) {
+            $title = 1;
+        }
+        //0 is refused, 1 is approve, 2 is refused
+        return response()->json(['success'=>true, 'data'=> $bm, 'status'=>$title], 200);
     }
 
     public function show_vista_wating($bm_id) {

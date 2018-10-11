@@ -132,7 +132,7 @@ Route::group(['middleware'=> ['jwt.auth']], function() {
 		Route::get('/show_vista_fails/{user_id}', 'API\BusinessModelController@show_vista_fails');
 		Route::get('/show_vista_done/{user_id}', 'API\BusinessModelController@show_vista_done');
 		Route::post('/submit_action/{user_id}', 'API\BusinessModelController@submit_action');
-		Route::get('/public_profile/{user_id}', 'API\BusinessModelController@public_profile');
+		Route::get('/public_profile/{user_id}/{pt_id}', 'API\BusinessModelController@public_profile');
 	});
 
 	//Get Compliant Titles
