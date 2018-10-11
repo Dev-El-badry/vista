@@ -33,4 +33,8 @@ class PublicUser extends Authenticatable
     public function getBusinessModelAttribute() {
         return BusinessModel::where("user_id", $this->id)->first();
     }
+
+    public function business_model() {
+        return $this->hasOne('App\BusinessModel', 'user_id');
+    }
 }

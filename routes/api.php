@@ -127,12 +127,23 @@ Route::group(['middleware'=> ['jwt.auth']], function() {
 	Route::prefix('business_model')->group(function() {
 		Route::post('/update_profile/{user_id}', 'API\BusinessModelController@update_profile');
 		Route::get('/show_profile/{user_id}', 'API\BusinessModelController@show_profile');
+		Route::get('/show_vista_wating/{user_id}', 'API\BusinessModelController@show_vista_wating');
+		Route::get('/show_vista_running/{user_id}', 'API\BusinessModelController@show_vista_running');
+		Route::get('/show_vista_fails/{user_id}', 'API\BusinessModelController@show_vista_fails');
+		Route::get('/show_vista_done/{user_id}', 'API\BusinessModelController@show_vista_done');
+		Route::post('/submit_action/{user_id}', 'API\BusinessModelController@submit_action');
+		Route::get('/public_profile/{user_id}', 'API\BusinessModelController@public_profile');
 	});
 
 	//Get Compliant Titles
 	Route::prefix('compliant_title')->group(function() {
 		Route::get('/get_list', 'API\CompliantTitleController@get_list');
 		Route::post('/add_job_title', 'API\CompliantTitleController@add_job_title');
+	});
+
+	//Compliant Form
+	Route::prefix('compliant_form')->group(function() {
+		Route::post('/submit_form/{user_id}/{patent_id}', 'API\ChatController@submit_form');
 	});
 
 
