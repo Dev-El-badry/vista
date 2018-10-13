@@ -73,7 +73,7 @@ class ChronicDrugsController extends Controller
             $drug->drug_id = $request->drug_id;
             $drug->dose = $request->dose;
             $drug->till_now = $request->till_now;
-            $drug->will_stop = $request->will_stop;
+            $drug->will_stop = strtotime($request->will_stop);
             $drug->user_id = $request->user_id;
             $drug->save();
 
@@ -103,7 +103,7 @@ class ChronicDrugsController extends Controller
             $drug->drug_id = $request->drug_id;
             $drug->dose = $request->dose;
             $drug->till_now = $request->till_now;
-            $drug->will_stop = $request->will_stop;
+            $drug->will_stop = strtotime($request->will_stop);
             $drug->save();
 
            

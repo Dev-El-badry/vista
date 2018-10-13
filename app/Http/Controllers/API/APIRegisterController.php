@@ -82,7 +82,7 @@ class APIRegisterController extends Controller
     		$user->is_verified = 1;
     		$user->save();
 
-            //$this->create_profile($check->user_id);
+            $this->create_profile($check->user_id);
 
     		DB::table('user_verification')->where('verification_code', $verification_code)->delete();
     		return response()->json([
